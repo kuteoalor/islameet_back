@@ -17,3 +17,6 @@
 
 # API Сервера:
 auth/bin/main.dart
+
+# Swagger
+Текущая документация описана в файле auth/swagger.json. UI доступен, например, с использованием сервиса https://editor.swagger.io/. Нужно лишь вставить туда содержимое файла swagger.json
