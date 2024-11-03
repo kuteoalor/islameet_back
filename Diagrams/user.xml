@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.16">
+  <diagram id="hwZt2DCnqZ-apJfxcXfM" name="Страница — 2">
+    <mxGraphModel dx="1167" dy="580" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="580" />
+              <mxPoint x="1140" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="580" />
+              <mxPoint x="1030" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-22">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="560" />
+              <mxPoint x="1000" y="560" />
+              <mxPoint x="1000" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div&gt;Пользователь&lt;/div&gt;" tooltip="Знакомец" id="zqs47LNFkYgi8-HDMC-5-6">
+          <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontStyle=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;comic=0;text=&quot;Знакомец&quot;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="520" width="30" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-7" value="Создать профиль" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="690" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-12" target="zqs47LNFkYgi8-HDMC-5-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-9" value="include&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-8">
+          <mxGeometry x="-0.0314" relative="1" as="geometry">
+            <mxPoint x="-25" y="20" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-12" target="zqs47LNFkYgi8-HDMC-5-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-11" value="include" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-10">
+          <mxGeometry x="0.0555" relative="1" as="geometry">
+            <mxPoint x="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-12" value="Редактировать&amp;nbsp;&lt;br&gt;профиль" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1214" y="500" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-13" value="Удалить профиль" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="700" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-14" value="Просмотреть ленту&lt;br&gt;профилей" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-15" value="Лайкнуть&amp;nbsp;&lt;br&gt;пользователя" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="360" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-16" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-6" target="zqs47LNFkYgi8-HDMC-5-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1230" y="620" as="sourcePoint" />
+            <mxPoint x="1280" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-21" target="zqs47LNFkYgi8-HDMC-5-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-18" value="extends&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-17">
+          <mxGeometry x="0.1146" y="1" relative="1" as="geometry">
+            <mxPoint y="21" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-21" target="zqs47LNFkYgi8-HDMC-5-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-20" value="extends" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-19">
+          <mxGeometry x="0.0967" y="-1" relative="1" as="geometry">
+            <mxPoint x="-29" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-21" value="Пожаловаться&lt;br&gt;на пользователя" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="460" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-22" value="Перейти в чат с&lt;br&gt;пользователем" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="600" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=block;endFill=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-15" target="zqs47LNFkYgi8-HDMC-5-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="963" y="360" />
+              <mxPoint x="963" y="262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-24" value="extends&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-23">
+          <mxGeometry x="-0.2984" y="3" relative="1" as="geometry">
+            <mxPoint x="-20" y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-25" value="Изменить фото" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1154" y="340" width="86" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-26" value="Изменить раздел&lt;br&gt;&quot;о себе&quot;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="340" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-27" value="Изменить возраст" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="340" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.401;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-12" target="zqs47LNFkYgi8-HDMC-5-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-29" value="include" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-28">
+          <mxGeometry x="-0.0933" y="2" relative="1" as="geometry">
+            <mxPoint x="23" y="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.328;entryY=0.988;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="zqs47LNFkYgi8-HDMC-5-12" target="zqs47LNFkYgi8-HDMC-5-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-31" value="include" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zqs47LNFkYgi8-HDMC-5-30">
+          <mxGeometry x="0.3648" relative="1" as="geometry">
+            <mxPoint x="-23" y="28" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-32" value="Изменить город" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1214" y="600" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zqs47LNFkYgi8-HDMC-5-33" value="Выход из&lt;br&gt;учетной записи" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1094" y="720" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
