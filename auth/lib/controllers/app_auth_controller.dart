@@ -72,10 +72,11 @@ class AppAuthController extends ResourceController {
       await managedContext.transaction((transaction) async {
         final qCreateUser = Query<User>(transaction)
           ..values.email = user.email
-          ..values.age = user.age
           ..values.city = user.city
           ..values.birthday = user.birthday
           ..values.description = user.description
+          ..values.name = user.name
+          ..values.isMale = user.isMale
           ..values.salt = salt
           ..values.hashPassword = hashPassword;
         final createdUser = await qCreateUser.insert();

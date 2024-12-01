@@ -6,7 +6,7 @@ void main(List<String> arguments) async {
   final int port = int.parse(Platform.environment['PORT'] ?? "6100");
   final service = Application<AppService>()..options.port = port;
   await service.start(
-    numberOfInstances: 3,
+    numberOfInstances: 1,
     consoleLogging: true,
   );
 }
