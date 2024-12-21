@@ -10,7 +10,7 @@ class _User {
   @Column(unique: true, indexed: true)
   String? email;
   @Column(nullable: true)
-  DateTime? birthday;
+  int? birthdayStamp;
   @Column(nullable: true)
   String? photoURL;
   @Column(nullable: true)

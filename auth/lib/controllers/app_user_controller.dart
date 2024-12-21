@@ -47,10 +47,11 @@ class AppUserController extends ResourceController {
       final fUser = await managedContext.fetchObjectWithID<User>(id);
       final qUpdateUser = Query<User>(managedContext)
         ..where((x) => x.id).equalTo(id)
-        ..values.birthday = user.birthday ?? fUser?.birthday
+        ..values.birthdayStamp = user.birthdayStamp ?? fUser?.birthdayStamp
         ..values.city = user.city ?? fUser?.city
         ..values.name = user.name ?? fUser?.name
-        ..values.description = user.city ?? fUser?.description
+        ..values.isMale = user.isMale ?? fUser?.isMale
+        ..values.description = user.description ?? fUser?.description
         ..values.email = user.email ?? fUser?.email
         ..values.photoURL = user.photoURL ?? fUser?.photoURL;
       await qUpdateUser.updateOne();

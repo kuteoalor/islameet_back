@@ -73,7 +73,7 @@ class AppAuthController extends ResourceController {
         final qCreateUser = Query<User>(transaction)
           ..values.email = user.email
           ..values.city = user.city
-          ..values.birthday = user.birthday
+          ..values.birthdayStamp = user.birthdayStamp
           ..values.description = user.description
           ..values.name = user.name
           ..values.isMale = user.isMale
