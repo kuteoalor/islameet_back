@@ -116,6 +116,14 @@ void main() {
 
 });
 
+// Проверки на дурака
+
+test('Access protected route without authorization', () async {
+  final response = await harness.agent?.get('/user');
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('missing required header \'authorization\''));
+});
 
 // test('Change user password', () async {
 //   final patchResponse = await harness.agent?.post('/user', 
