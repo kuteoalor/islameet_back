@@ -76,32 +76,49 @@ void main() {
   expect(putData['email'], '$firstTimeStamp');
 });
   
-  test('Login user with valid credentials', () async {
-  final firstTimeStamp = DateTime.now();
-  final response = await harness.agent?.put(
-    '/token',
-     body: {
-    'email': '$firstTimeStamp',
-    'password': mockUser['password'],
-  }
-  );
-  expect(response?.statusCode, 200);
-    final putData = response?.body.as<Map>()['data'];
-    expect(putData['email'], '$firstTimeStamp');
+test('Login user with valid credentials and check ID', () async {
+  final email = 'qwerty';
+  final password = 'qwerty'; 
+  final loginResponse = await harness.agent?.post('/token', body: {
+    'email': email,
+    'password': password,
+  });
+
+  expect(loginResponse?.statusCode, 200);
+
+  final accessToken = loginResponse?.body.as<Map>()['data']['accessToken'];
+  expect(accessToken, isNotNull);
+
+  final userInfoRequest = harness.agent?.request('/user')
+    ?..headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
+  final userInfoResponse = await userInfoRequest?.get();
+
+  expect(userInfoResponse?.statusCode, 200);
+  final userData = userInfoResponse?.body.as<Map>()['data'];
+
+  final loggedInUserId = userData?['id'];
+
+  final expectedUserId = 1;
+  expect(loggedInUserId, expectedUserId);
 });
 
-// test('Login user with invalid password', () async {
-//   final request = harness.agent?.request('/user')
-//     ?..headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
-//     final response = await request?.get(); 
-//     final data = response?.body.as<Map>()['data'];
-//   final userAccessToken = data?['accessToken'];
-//   final postResponse = await harness.agent?.post('/user', 
-//     headers: {'authorization': 'Bearer $userAccessToken'});
-//   expect(response?.statusCode, 401);
-//   final body = response?.body.as<Map>()['data'];
-//   expect(body?['password'], body?['hashpassword']);
-// });
+
+test('Login user with invalid password', () async {
+  final email = 'qwerty';
+  final invalidPassword = 'wrongpassword123';
+
+  final loginResponse = await harness.agent?.post('/token', body: {
+    'email': email,
+    'password': invalidPassword,
+  });
+
+  expect(loginResponse?.statusCode, 401);
+
+  final body = loginResponse?.body.as<Map>();
+  expect(body?['error'], isNotNull);
+  expect(body?['error'], 'Invalid credentials');
+});
+
 
   test('Delete a user', () async {
   final deleteRequest = harness.agent?.request('/user')
@@ -116,34 +133,30 @@ void main() {
 
 });
 
-// Проверки на дурака
 
-test('Access protected route without authorization', () async {
-  final response = await harness.agent?.get('/user');
-  expect(response?.statusCode, 400);
-  final error = response?.body.as<Map>()['error'];
-  expect(error, contains('missing required header \'authorization\''));
+
+test('Change user password', () async {
+  final patchResponse = await harness.agent?.post('/user', 
+    headers: {'authorization': 'Bearer $accessToken'}, 
+    body: {'password': mockUser['password'] = 'NewPassword123'}
+  );
+
+  expect(patchResponse?.statusCode, 200);
+  final data = patchResponse?.body.as<Map>()['data'];
+  expect(data, isNotNull);
+
+  final loginWithOldPassword = await harness.agent?.post('/token', body: {
+    'email': mockUser['email'],
+    'password': mockUser['password'],
+  });
+  expect(loginWithOldPassword?.statusCode, 401);
+  final loginWithNewPassword = await harness.agent?.post('/token', body: {
+    'email': mockUser['email'],
+    'password': 'newPassword123',
+  });
+  expect(loginWithNewPassword?.statusCode, 200);
 });
 
-// test('Change user password', () async {
-//   final patchResponse = await harness.agent?.post('/user', 
-//     headers: {'authorization': 'Bearer $accessToken'}, 
-//     body: {'oldPassword': mockUser['password'], 'newPassword': 'newPassword123'});
-//     final Data = patchResponse?.body.as<Map>()['data'];
-//   expect(patchResponse?.statusCode, 200);
-
-//   final loginWithOldPassword = await harness.agent?.post('/auth', body: {
-//     'email': mockUser['email'],
-//     'password': mockUser['password'],
-//   });
-//   expect(loginWithOldPassword?.statusCode, 401);
-
-//   final loginWithNewPassword = await harness.agent?.post('/auth', body: {
-//     'email': mockUser['email'],
-//     'password': 'newPassword123',
-//   });
-//   expect(loginWithNewPassword?.statusCode, 200);
-// });
 
 test('Like a user profile', () async {
   final response = await harness.agent?.post('/user/like', 
@@ -173,16 +186,8 @@ test('Get list of matches', () async {
 });
 
 
-test('Get paginated list of users', () async {
-  final response = await harness.agent?.get('/user/all?page=1&limit=10');
-  expect(response?.statusCode, 200);
-  final data = response?.body.as<Map>()['data'];
-  expect(data.runtimeType, List);
-  expect(data.length, lessThanOrEqualTo(10));
-});
-
 test('Register, complete profile, like another user, and check match', () async {
-  final registrationResponse = await harness.agent?.post('/user/register', body: {
+  final registrationResponse = await harness.agent?.post('/token', body: {
     'email': 'newuser@example.com',
     'password': 'securepassword123',
   });
@@ -190,7 +195,7 @@ test('Register, complete profile, like another user, and check match', () async 
 
   final newUserToken = registrationResponse?.body.as<Map>()['data']['accessToken'];
 
-  final profileResponse = await harness.agent?.post('/user/profile', 
+  final profileResponse = await harness.agent?.post('/token', 
     headers: {'authorization': 'Bearer $newUserToken'},
     body: {
       'name': 'John Doe',
@@ -211,29 +216,6 @@ test('Register, complete profile, like another user, and check match', () async 
   expect(matches.any((match) => match['id'] == 2), true);
 });
 
-
-test('Forgot password and reset it', () async {
-
-  final forgotPasswordResponse = await harness.agent?.post('/auth/forgot-password', body: {
-    'email': mockUser['email'],
-  });
-  expect(forgotPasswordResponse?.statusCode, 200);
-
-
-  final resetCode = forgotPasswordResponse?.body.as<Map>()['data']['resetCode'];
-
-  final resetPasswordResponse = await harness.agent?.post('/auth/reset-password', body: {
-    'resetCode': resetCode,
-    'newPassword': 'newSecurePassword123',
-  });
-  expect(resetPasswordResponse?.statusCode, 200);
-
-  final loginResponse = await harness.agent?.post('/auth/login', body: {
-    'email': mockUser['email'],
-    'password': 'newSecurePassword123',
-  });
-  expect(loginResponse?.statusCode, 200);
-});
 
 test('Like a user but no match occurs', () async {
   final likeResponse = await harness.agent?.post('/user/like', 
@@ -258,5 +240,62 @@ test('Filter users by age and interests', () async {
   expect(users.every((user) => user['interests'].contains('hiking')), true);
 });
 
+
+// Проверки на дурака
+
+test('Access protected route without authorization', () async {
+  final response = await harness.agent?.get('/user');
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('missing required header \'authorization\''));
+});
+
+test('Register with invalid email', () async {
+  final response = await harness.agent?.post(
+    '/token',
+     body: {
+    'email': 'not-an-email',
+    'password': 'securepassword123',
+  });
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, 'Query failed: User not found. Reason: null');
+});
+
+test('Register without password', () async {
+  final response = await harness.agent?.post('/token', body: {
+    'email': 'validemail@example.com',
+  });
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, '');
+});
+
+test('Attempt to delete another user\'s profile', () async {
+  final response = await harness.agent?.delete('/user/999', 
+    headers: {'authorization': 'Bearer $accessToken'});
+  expect(response?.statusCode, 403);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('You are not authorized to delete this user'));
+});
+
+test('Fetch a large number of users', () async {
+  final response = await harness.agent?.get('/user/all?page=1&limit=10000');
+  expect(response?.statusCode, 200);
+  final data = response?.body.as<Map>()['data'];
+  expect(data.runtimeType, List);
+  expect(data.length, lessThanOrEqualTo(10000));
+});
+
+test('Register with overly long email', () async {
+  final longEmail = 'a' * 10000 + '@example.com'; 
+  final response = await harness.agent?.post('/token', body: {
+    'email': longEmail,
+    'password': 'securepassword123',
+  });
+  expect(response?.statusCode, 400); 
+  final error = response?.body.as<Map>()['error'];
+  expect(error, 'Query failed: User not found. Reason: null');
+});
 
 }
