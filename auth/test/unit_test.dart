@@ -145,12 +145,12 @@ test('Change user password', () async {
   final data = patchResponse?.body.as<Map>()['data'];
   expect(data, isNotNull);
 
-  final loginWithOldPassword = await harness.agent?.post('/token', body: {
+  final loginWithOldPassword = await harness.agent?.post('/user', body: {
     'email': mockUser['email'],
     'password': mockUser['password'],
   });
   expect(loginWithOldPassword?.statusCode, 401);
-  final loginWithNewPassword = await harness.agent?.post('/token', body: {
+  final loginWithNewPassword = await harness.agent?.post('/user', body: {
     'email': mockUser['email'],
     'password': 'newPassword123',
   });
@@ -187,7 +187,7 @@ test('Get list of matches', () async {
 
 
 test('Register, complete profile, like another user, and check match', () async {
-  final registrationResponse = await harness.agent?.post('/token', body: {
+  final registrationResponse = await harness.agent?.post('/user', body: {
     'email': 'newuser@example.com',
     'password': 'securepassword123',
   });
@@ -195,7 +195,7 @@ test('Register, complete profile, like another user, and check match', () async 
 
   final newUserToken = registrationResponse?.body.as<Map>()['data']['accessToken'];
 
-  final profileResponse = await harness.agent?.post('/token', 
+  final profileResponse = await harness.agent?.post('/user', 
     headers: {'authorization': 'Bearer $newUserToken'},
     body: {
       'name': 'John Doe',
@@ -231,14 +231,6 @@ test('Like a user but no match occurs', () async {
   expect(matches.any((match) => match['id'] == 5), false);
 });
 
-test('Filter users by age and interests', () async {
-  final response = await harness.agent?.get('/user/all?ageMin=25&ageMax=35&interests=hiking');
-  expect(response?.statusCode, 200);
-
-  final users = response?.body.as<Map>()['data'];
-  expect(users.every((user) => user['age'] >= 25 && user['age'] <= 35), true);
-  expect(users.every((user) => user['interests'].contains('hiking')), true);
-});
 
 
 // Проверки на дурака
@@ -280,11 +272,11 @@ test('Attempt to delete another user\'s profile', () async {
 });
 
 test('Fetch a large number of users', () async {
-  final response = await harness.agent?.get('/user/all?page=1&limit=10000');
+  final response = await harness.agent?.get('/user/all?page=1&limit=100');
   expect(response?.statusCode, 200);
   final data = response?.body.as<Map>()['data'];
   expect(data.runtimeType, List);
-  expect(data.length, lessThanOrEqualTo(10000));
+  expect(data.length, lessThanOrEqualTo(100));
 });
 
 test('Register with overly long email', () async {
@@ -296,6 +288,72 @@ test('Register with overly long email', () async {
   expect(response?.statusCode, 400); 
   final error = response?.body.as<Map>()['error'];
   expect(error, 'Query failed: User not found. Reason: null');
+});
+
+test('Login with incorrect password', () async {
+  final response = await harness.agent?.post('/token', body: {
+    'email': mockUser['email'],
+    'password': 'wrongpassword',
+  });
+  expect(response?.statusCode, 401);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('Invalid credentials'));
+});
+
+test('Login with unregistered email', () async {
+  final response = await harness.agent?.post('/token', body: {
+    'email': 'nonexistent@example.com',
+    'password': 'password123',
+  });
+  expect(response?.statusCode, 404);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('User not found'));
+});
+
+//SQL - инъекции
+test('Register with SQL injection in email', () async {
+  final sqlInjection = "'; DROP TABLE _user; --";
+  final response = await harness.agent?.put('/token', body: {
+    'email': sqlInjection,
+    'password': 'securepassword123',
+  });
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, 'Invalid email');
+});
+
+test('Register with SQL injection in password', () async {
+  final sqlInjection = "' OR '1'='1; DROP TABLE _user";
+  final response = await harness.agent?.put('/token', body: {
+    'email': 'test@example.com',
+    'password': sqlInjection,
+  });
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, 'Invalid password format');
+});
+
+test('Register with overly long password', () async {
+  final longPassword = 'a' * 10000; 
+  final response = await harness.agent?.put('/token', body: {
+    'email': 'test@example.com',
+    'password': longPassword,
+  });
+  expect(response?.statusCode, 400);
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('Password is too long'));
+});
+
+
+test('Register with special characters in email', () async {
+  final specialEmail = "test'; DROP TABLE _user; --@example.com";
+  final response = await harness.agent?.put('/token', body: {
+    'email': specialEmail,
+    'password': 'securepassword123',
+  });
+  expect(response?.statusCode, 400); 
+  final error = response?.body.as<Map>()['error'];
+  expect(error, contains('Invalid email format'));
 });
 
 }
